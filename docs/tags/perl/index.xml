@@ -31,5 +31,15 @@ perl -Mbignum=bpi -wle &amp;#34;print bpi(2000)&amp;#34; perl is the Perl langua
 To make the script reliable and easy to maintain I wanted to test it somehow.</description>
     </item>
     
+    <item>
+      <title>My First CPAN Contribution</title>
+      <link>https://jreisinger.github.io/blog2/posts/my-first-cpan-contribution/</link>
+      <pubDate>Mon, 13 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/posts/my-first-cpan-contribution/</guid>
+      <description>My First CPAN Contribution Last week I uploaded App::Monport to CPAN. I did it to try out the CPAN toolchain and to get a feeling of accomplishment :-). But I also think the application might be useful to some folks.
+Update: My application was mentioned in PerlTricks&amp;rsquo; article. Cool!</description>
+    </item>
+    
   </channel>
 </rss>

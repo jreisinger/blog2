@@ -20,41 +20,5 @@
       <description></description>
     </item>
     
-    <item>
-      <title>net</title>
-      <link>https://jreisinger.github.io/blog2/categories/net/</link>
-      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog2/categories/net/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DevOps</title>
-      <link>https://jreisinger.github.io/blog2/categories/devops/</link>
-      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog2/categories/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sec</title>
-      <link>https://jreisinger.github.io/blog2/categories/sec/</link>
-      <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog2/categories/sec/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>os</title>
-      <link>https://jreisinger.github.io/blog2/categories/os/</link>
-      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog2/categories/os/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>

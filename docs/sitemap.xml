@@ -53,31 +53,6 @@
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/blog2/posts/go-intro/</loc>
-    <lastmod>2019-07-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/blog2/categories/net/</loc>
-    <lastmod>2019-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/blog2/tags/sockets/</loc>
-    <lastmod>2019-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/blog2/tags/tcp/</loc>
-    <lastmod>2019-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/blog2/posts/go-tcp-sockets/</loc>
-    <lastmod>2019-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://jreisinger.github.io/blog2/tags/perl/</loc>
     <lastmod>2018-09-26T00:00:00+00:00</lastmod>
   </url>
@@ -88,58 +63,13 @@
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/blog2/categories/devops/</loc>
-    <lastmod>2017-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/blog2/posts/docker/</loc>
-    <lastmod>2017-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/blog2/tags/docker/</loc>
-    <lastmod>2017-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/blog2/categories/sec/</loc>
-    <lastmod>2016-05-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/blog2/posts/tcpdump/</loc>
-    <lastmod>2016-05-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/blog2/tags/unix/</loc>
-    <lastmod>2016-05-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://jreisinger.github.io/blog2/posts/testing-perl-script/</loc>
     <lastmod>2015-12-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/blog2/tags/dd/</loc>
-    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/blog2/posts/gen_rand_file/</loc>
-    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/blog2/tags/linux/</loc>
-    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/blog2/categories/os/</loc>
-    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
+    <loc>https://jreisinger.github.io/blog2/posts/my-first-cpan-contribution/</loc>
+    <lastmod>2015-07-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>

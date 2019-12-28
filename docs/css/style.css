@@ -22,9 +22,10 @@ hr {
 }
 pre, code {
   font-family: monospace, serif;
-  background-color: lightgray;
+  /* background-color: lightgray; */
   padding-left: 4px;
   padding-right: 4px;
+  font-size: 0.9em;
 }
 pre {
   padding: 4px;
@@ -73,7 +74,7 @@ blockquote blockquote blockquote blockquote {
 .site-title {
   -webkit-flex-grow: 1;
   flex-grow: 1;
-  font-size: 2rem;
+  font-size: 1rem;
   margin: 0;
   margin-top: 10px;
   padding: 0;
@@ -90,7 +91,7 @@ blockquote blockquote blockquote blockquote {
   justify-content: flex-end;
   flex-wrap: wrap;
   align-items: flex-end;
-  font-size: 1.2em;
+  font-size: 1em;
   list-style-type: none;
   margin: 0;
   margin-top: 10px;
@@ -366,8 +367,8 @@ blockquote blockquote blockquote blockquote {
 .list {
 }
 .list .article {
-  padding-bottom: 40px;
-  margin-bottom: 40px;
+  padding-bottom: 1px;
+  margin-bottom: 1px;
   border-bottom: solid 1px lightgray;
 }
 .list .article-titles {
@@ -597,5 +598,5 @@ blockquote blockquote blockquote blockquote {
     width: 100%;
     box-sizing: border-box;
   }
-  
+
 }

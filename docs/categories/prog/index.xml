@@ -22,28 +22,6 @@ curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/
     </item>
     
     <item>
-      <title>Introduction to Go</title>
-      <link>https://jreisinger.github.io/blog2/posts/go-intro/</link>
-      <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog2/posts/go-intro/</guid>
-      <description>Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
-Types help us reason about what our program is doing and help us catch many errors.
-Types are similar to sets in mathematics. They classify data into groups and determine:
- characteristics of data (e.g. all strings have length) operations that can be performed on data (e.g. len(&amp;quot;a string&amp;quot;)) data size (e.</description>
-    </item>
-    
-    <item>
-      <title>TCP sockets with Go</title>
-      <link>https://jreisinger.github.io/blog2/posts/go-tcp-sockets/</link>
-      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog2/posts/go-tcp-sockets/</guid>
-      <description>Client This is an HTTP client implemented using socket-level programming:
-// Usage: go run telnet.go package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;net&amp;#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&amp;#34;tcp&amp;#34;, &amp;#34;golang.org:80&amp;#34;) // Connect over TCP  fmt.Fprintf(conn, &amp;#34;GET / HTTP/1.0\r\n\r\n&amp;#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&amp;#39;\n&amp;#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&amp;rsquo;ve also added error checking + reading from command line arguments):</description>
-    </item>
-    
-    <item>
       <title>Perl one-liners</title>
       <link>https://jreisinger.github.io/blog2/posts/perl-one-liners/</link>
       <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
@@ -61,6 +39,16 @@ perl -Mbignum=bpi -wle &amp;#34;print bpi(2000)&amp;#34; perl is the Perl langua
       <guid>https://jreisinger.github.io/blog2/posts/testing-perl-script/</guid>
       <description>How to write tests for a Perl script At $work, I was to upgrade several Debians from Squeezy through Wheezy to Jessie (6 to 8). I wanted to be sure that after the upgrade (mostly) the same processes are running as before. I whipped up a script, that simply stores the list of running processes before the upgrade. When run subsequently it reports missing processes (if any).
 To make the script reliable and easy to maintain I wanted to test it somehow.</description>
+    </item>
+    
+    <item>
+      <title>My First CPAN Contribution</title>
+      <link>https://jreisinger.github.io/blog2/posts/my-first-cpan-contribution/</link>
+      <pubDate>Mon, 13 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/posts/my-first-cpan-contribution/</guid>
+      <description>My First CPAN Contribution Last week I uploaded App::Monport to CPAN. I did it to try out the CPAN toolchain and to get a feeling of accomplishment :-). But I also think the application might be useful to some folks.
+Update: My application was mentioned in PerlTricks&amp;rsquo; article. Cool!</description>
     </item>
     
   </channel>
