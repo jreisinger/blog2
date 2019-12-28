@@ -1,0 +1,104 @@
+baseurl = "https://jreisinger.github.io/blog2/"
+title = "Jozef Reisinger's Blog2"
+theme = "whiteplain"
+languageCode = "en"
+# Disqus shortname
+disqusShortname = "notes-4"
+# google analytics tracking id
+googleAnalytics = "UA-124886160-3"
+publishDir = "docs"
+enableRobotsTXT = true
+canonifyURLs = true
+
+# Code syntax highlighting.
+pygmentsUseClassic            = false
+pygmentsCodeFences            = true
+pygmentsCodeFencesGuessSyntax = true
+# https://help.farbox.com/pygments.html
+pygmentsstyle                 = "bw"
+
+# Copyright notice. This is displayer in the footer.
+#copyright = "&copy; Copyright 2018 Jozef Reisinger"
+
+# and if you think your md file names or locations might change:
+[permalinks]
+  post = "/blog2/:title/"
+
+[params]
+  # Date format
+  #dateFormat = "January 2, 2006"
+  editURL = "https://github.com/jreisinger/blog2/tree/master/content/"
+
+# This is displayer in About page.
+[params.author]
+  name = "Jozef Reisinger"
+  # Gravatar or Abatar image
+  gravatar = "jozef.reisinger@gmail.com"
+  #avatar = "/path/to/avatar"
+
+  # twitter = "Twitter username"
+  # facebook = "Facebook username"
+  # googleplus = "Googleplus username"
+  # instagram = "Instagram username"
+  # tumblr = "Tumblr username"
+  # flickr = "Flickr username"
+  # reddit = "Reddit username"
+  # linkedin = "Linkedin username"
+  # slideshare = "Slideshare username"
+  github = "jreisinger"
+  # gitlab = "Gitlab username"
+  # bitbucket = "Bitbucket username"
+  stackoverflow = "1039320/jreisinger"
+  # jsfiddle = "Jsfiddle username"
+  # codepen = "Codepen username"
+  # deviantart = "Deviantart username"
+  # behance = "Behance username"
+  # dribbble = "Dribbble username"
+  # wordpress = "Wordpress username"
+  # medium = "Medium username"
+  # foursquare = "Foursquare username"
+  # xing = "Xing username"
+  # quora = "Quora username"
+  # youtube = "Youtube username"
+  # vimeo = "Vimeo username"
+  # whatsapp = "Whatsapp username"
+  # skype = "Skype username"
+  # snapchat = "Snapchat username"
+  # pinterest = "Pinterest username"
+  # telegram = "Telegram username"
+  # vine = "Vine username"
+  # email = "Your email"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+# Header Menu
+[[menu.main]]
+  name = "Categories"
+  identifier = "categories"
+  url = "/categories/"
+  weight = 1
+[[menu.main]]
+  name = "Tags"
+  identifier = "tags"
+  url = "/tags/"
+  weight = 2
+# [[menu.main]]
+#   name = "Archives"
+#   identifier = "archives"
+#   url = "/archives/"
+#   weight = 3
+# [[menu.main]]
+#   name = "About"
+#   identifier = "about"
+#   url = "/about/"
+#   weight = 4
+
+# Footer Menu
+[[menu.footer]]
+  name = "About"
+  weight = 1
+  identifier = "about"
+  url = "https://jreisinger.github.io/about"
