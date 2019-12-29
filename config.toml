@@ -1,5 +1,5 @@
 baseurl = "https://jreisinger.github.io/blog2/"
-title = "Jozef Reisinger's Blog2"
+title = "Jozef Reisinger's Blog"
 theme = "whiteplain"
 languageCode = "en"
 # Disqus shortname
