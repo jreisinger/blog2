@@ -5,8 +5,6 @@ categories: [prog]
 tags: [perl]
 ---
 
-# Introduction to Perl one-liners
-
 I think Perl one-liners are still super useful. They are small [Perl](https://www.perl.org/) programs that are run directly from command line. Like this one from the Kubernetes [job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#running-an-example-job) documentation:
 
 ```

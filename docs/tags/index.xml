@@ -56,5 +56,23 @@
       <description></description>
     </item>
     
+    <item>
+      <title>testing</title>
+      <link>https://jreisinger.github.io/blog2/tags/testing/</link>
+      <pubDate>Tue, 22 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/tags/testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cpan</title>
+      <link>https://jreisinger.github.io/blog2/tags/cpan/</link>
+      <pubDate>Mon, 13 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/tags/cpan/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

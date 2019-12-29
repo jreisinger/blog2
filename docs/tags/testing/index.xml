@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>testing on Jozef Reisinger&#39;s Blog</title>
+    <link>https://jreisinger.github.io/blog2/tags/testing/</link>
+    <description>Recent content in testing on Jozef Reisinger&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 22 Dec 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jreisinger.github.io/blog2/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Testing Perl script</title>
+      <link>https://jreisinger.github.io/blog2/posts/testing-perl-script/</link>
+      <pubDate>Tue, 22 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/posts/testing-perl-script/</guid>
+      <description>At $work, I was to upgrade several Debians from Squeezy through Wheezy to Jessie (6 to 8).</description>
+    </item>
+    
+  </channel>
+</rss>

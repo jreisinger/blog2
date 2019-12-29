@@ -6,9 +6,9 @@
   <title>Perl one-liners - Jozef Reisinger&#39;s Blog</title>
   <meta property="og:title" content="Perl one-liners - Jozef Reisinger&#39;s Blog" />
   <meta name="twitter:title" content="Perl one-liners - Jozef Reisinger&#39;s Blog" />
-  <meta name="description" content="Introduction to Perl one-liners I think Perl one-liners are still super useful.">
-  <meta property="og:description" content="Introduction to Perl one-liners I think Perl one-liners are still super useful.">
-  <meta name="twitter:description" content="Introduction to Perl one-liners I think Perl one-liners are still super useful.">
+  <meta name="description" content="I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line.">
+  <meta property="og:description" content="I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line.">
+  <meta name="twitter:description" content="I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line.">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Jozef Reisinger&#39;s Blog" />
   <meta property="og:url" content="https://jreisinger.github.io/blog2/posts/perl-one-liners/" />
@@ -75,8 +75,7 @@
   </ul>
 </nav>
 </aside>
-      <h1 id="introduction-to-perl-one-liners">Introduction to Perl one-liners</h1>
-<p>I think Perl one-liners are still super useful. They are small <a href="https://www.perl.org/">Perl</a> programs that are run directly from command line. Like this one from the Kubernetes <a href="https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#running-an-example-job">job</a> documentation:</p>
+      <p>I think Perl one-liners are still super useful. They are small <a href="https://www.perl.org/">Perl</a> programs that are run directly from command line. Like this one from the Kubernetes <a href="https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#running-an-example-job">job</a> documentation:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34;
 </code></pre></div><p><code>perl</code> is the Perl language interpreter. <code>-M</code> and <code>-wle</code> are command line switches (or options) that modify the <code>perl</code>'s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed. In this case it uses the <code>bpi</code> subroutine from the <a href="https://perldoc.perl.org/bignum.html">bignum</a> module to calculate the PI with accuracy of 2000 digits. The command will take a while to finish.</p>
 <h2 id="switches">Switches</h2>
