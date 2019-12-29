@@ -1,3 +1,4 @@
 [submodule "whiteplain"]
-	path = whiteplain
-	url = git@github.com:jreisinger/whiteplain.git
+	path = themese/whiteplain
+    #url = git@github.com:jreisinger/whiteplain.git
+	url = git@github.com:taikii/whiteplain.git
