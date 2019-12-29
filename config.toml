@@ -9,6 +9,7 @@ googleAnalytics = "UA-124886160-3"
 publishDir = "docs"
 enableRobotsTXT = true
 canonifyURLs = true
+summaryLength = 10
 
 # Code syntax highlighting.
 pygmentsUseClassic            = false
