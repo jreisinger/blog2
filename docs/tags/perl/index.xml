@@ -17,8 +17,7 @@
       <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog2/posts/perl-one-liners/</guid>
-      <description>Introduction to Perl one-liners I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line. Like this one from the Kubernetes job documentation:
-perl -Mbignum=bpi -wle &amp;#34;print bpi(2000)&amp;#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&#39;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.</description>
+      <description>Introduction to Perl one-liners I think Perl one-liners are still super useful.</description>
     </item>
     
     <item>
@@ -27,8 +26,7 @@ perl -Mbignum=bpi -wle &amp;#34;print bpi(2000)&amp;#34; perl is the Perl langua
       <pubDate>Tue, 22 Dec 2015 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog2/posts/testing-perl-script/</guid>
-      <description>How to write tests for a Perl script At $work, I was to upgrade several Debians from Squeezy through Wheezy to Jessie (6 to 8). I wanted to be sure that after the upgrade (mostly) the same processes are running as before. I whipped up a script, that simply stores the list of running processes before the upgrade. When run subsequently it reports missing processes (if any).
-To make the script reliable and easy to maintain I wanted to test it somehow.</description>
+      <description>How to write tests for a Perl script At $work, I was to upgrade several Debians from Squeezy through Wheezy to Jessie (6 to 8).</description>
     </item>
     
     <item>
@@ -37,8 +35,7 @@ To make the script reliable and easy to maintain I wanted to test it somehow.</d
       <pubDate>Mon, 13 Jul 2015 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog2/posts/my-first-cpan-contribution/</guid>
-      <description>My First CPAN Contribution Last week I uploaded App::Monport to CPAN. I did it to try out the CPAN toolchain and to get a feeling of accomplishment :-). But I also think the application might be useful to some folks.
-Update: My application was mentioned in PerlTricks&amp;rsquo; article. Cool!</description>
+      <description>My First CPAN Contribution Last week I uploaded App::Monport to CPAN.</description>
     </item>
     
   </channel>
