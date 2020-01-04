@@ -90,17 +90,18 @@ $ echo -e "$HOME\n/etc\n/tmp" | runp -q -p 'sudo du -sh' | sort -h
 The final example shows how to find open ports from a list of hosts and ports:
 
 ```
-# file with host-port pairs
-$ cat host-port.txt
+cat << EOF > /tmp/host-port.txt
+localhost 22
 localhost 80
 localhost 81
 127.0.0.1 443
 127.0.0.1 444
-localhost 22
+scanme.nmap.org 22
+scanme.nmap.org 23
+scanme.nmap.org 443
+EOF
 
-# find out which ports are listening
-$ cat host-port.txt | runp -p 'netcat -v -w2 -z' -q 2>&1 | egrep 'open$'
-localhost [127.0.0.1] 443 (https) open
-localhost [127.0.0.1] 80 (http) open
-localhost [127.0.0.1] 22 (ssh) open
+cat /tmp/host-port.txt | runp -q -p 'netcat -v -w2 -z' 2>&1 | egrep '(succeeded!|open)$'
 ```
+
+You can find the source code and more examples [here](https://github.com/jreisinger/runp).
