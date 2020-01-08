@@ -3,7 +3,7 @@ title = "Jozef Reisinger's Blog"
 theme = "whiteplain"
 languageCode = "en"
 # Disqus shortname
-disqusShortname = "notes-4"
+disqusShortname = "https-jreisinger-github-io-blog2"
 # google analytics tracking id
 googleAnalytics = "UA-124886160-3"
 publishDir = "docs"
