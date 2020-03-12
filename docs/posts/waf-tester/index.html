@@ -94,12 +94,51 @@
 <aside class="toc">
   <nav id="TableOfContents">
   <ul>
+    <li><a href="#possible-use-cases">Possible use cases</a></li>
     <li><a href="#waf-tests">WAF tests</a></li>
-    <li><a href="#waf-rules">WAF rules</a></li>
+    <li><a href="#adding-a-waf-rule">Adding a WAF rule</a></li>
   </ul>
 </nav>
 </aside>
-      <p>I've been working with WAFs for some time and to make my work easier I created couple of tools. They are inside the <a href="https://github.com/jreisinger/waf-tester">waf-tester</a> project. Let's see how I use these tools.</p>
+      <p>I've been working with WAFs for some time and to make my work easier I created couple of tools. They are inside the <a href="https://github.com/jreisinger/waf-tester">waf-tester</a> project. In this post I'll try to show you how they can be used. In case you want to try them out yourself do the following in a terminal:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">git clone https://github.com/jreisinger/waf-tester
+cd waf-tester
+make install
+waf-tester -h
+./run-waf -h
+</code></pre></div><h2 id="possible-use-cases">Possible use cases</h2>
+<p>I've successfully used <code>waf-tester</code> and <code>run-waf</code> for two scenarios so far. One is running <code>waf-tester</code> against a newly deployed WAF to test it's working as expected:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">waf-tester -host waf.example.com -tests tests/
+</code></pre></div><p>The second is testing changes in WAF locally before pushing them to upstream repository. The changes include</p>
+<ul>
+<li>upgrades or configuration changes of reverse proxy (like NGINX) or the actual WAF engine (like ModSecurity or NAXSI)</li>
+<li>changes or additions to the WAF engine rules</li>
+</ul>
+<p>My workflow is usually the following:</p>
+<ol>
+<li>Put a Dockerfile and all needed files for building a WAF into a directory (<code>DIR</code>) - see <a href="https://github.com/jreisinger/waf-tester/tree/master/nginx">nginx</a> folder for examples.</li>
+<li>Start the WAF container: <code>./run-waf -s DIR</code></li>
+<li>Check WAF container is running:</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ docker ps
+CONTAINER ID        IMAGE                       COMMAND                  CREATED              STATUS                       PORTS                  NAMES
+7f3710c18780        tmplas6whoyay_testing-waf   &#34;nginx -g &#39;daemon of…&#34;   About a minute ago   Up About a minute            0.0.0.0:80-&gt;80/tcp     tmplas6whoyay_testing-waf_1
+bccdc718741d        nginx                       &#34;nginx -g &#39;daemon of…&#34;   About a minute ago   Up About a minute            0.0.0.0:8080-&gt;80/tcp   tmplas6whoyay_testing-webserver_1
+</code></pre></div><ul>
+<li>The second container is a testing web server that's protected by the testing WAF.</li>
+</ul>
+<ol start="4">
+<li>Get into the WAF container to have a look or make temporary changes:</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ docker exec -it tmplas6whoyay_testing-waf_1 /bin/sh
+/ # vi /etc/nginx/nginx.conf
+/ # nginx -s reload
+/ # exit
+</code></pre></div><ol start="5">
+<li>Make permanent changes by editing the files in the <code>DIR</code>.</li>
+<li>Run the tests: <code>waf-tester -host localhost -scheme http</code></li>
+<li>Commit and push.</li>
+</ol>
 <h2 id="waf-tests">WAF tests</h2>
 <p><code>waf-tester</code> binary executes and then evaluates tests against a specified host. So what are these tests. They are basically HTTP requests and expected responses represented in YAML format. For example:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">  - test_title: RCE
@@ -124,7 +163,7 @@
           output:
             log_contains: &#34;id \&#34;911100\&#34;&#34;
 </code></pre></div><p>The YAML format is based on <a href="https://github.com/CRS-support/ftw/blob/master/docs/YAMLFormat.md">FTW</a> but some fields are missing. Others, like <code>dest_addr</code>, are ignored. See the <a href="https://github.com/jreisinger/waf-tester/blob/master/yaml/types.go">code</a> for details.</p>
-<h2 id="waf-rules">WAF rules</h2>
+<h2 id="adding-a-waf-rule">Adding a WAF rule</h2>
 <p>WAF rules (or signatures) is what helps WAFs to distinguish between legitimate and malicious requests. Let's say that I want to run some tests against a <a href="https://github.com/nbs-system/naxsi">NAXSI</a> WAF with default rules. To run this WAF locally in a container I execute this:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ ./run-waf -s nginx/naxsi
 --&gt; Create a temporary directory
