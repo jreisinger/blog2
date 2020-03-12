@@ -6,7 +6,7 @@
     <description>Recent content in Categories on Jozef Reisinger&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/blog2/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>prog</title>
       <link>https://jreisinger.github.io/blog2/categories/prog/</link>
-      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 12 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog2/categories/prog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sec</title>
+      <link>https://jreisinger.github.io/blog2/categories/sec/</link>
+      <pubDate>Thu, 12 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/categories/sec/</guid>
       <description></description>
     </item>
     

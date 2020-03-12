@@ -6,17 +6,53 @@
     <description>Recent content in Tags on Jozef Reisinger&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/blog2/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>docker</title>
+      <link>https://jreisinger.github.io/blog2/tags/docker/</link>
+      <pubDate>Thu, 12 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>go</title>
       <link>https://jreisinger.github.io/blog2/tags/go/</link>
-      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 12 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog2/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shell</title>
+      <link>https://jreisinger.github.io/blog2/tags/shell/</link>
+      <pubDate>Thu, 12 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/tags/shell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sysadmin</title>
+      <link>https://jreisinger.github.io/blog2/tags/sysadmin/</link>
+      <pubDate>Thu, 12 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/tags/sysadmin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>waf</title>
+      <link>https://jreisinger.github.io/blog2/tags/waf/</link>
+      <pubDate>Thu, 12 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/tags/waf/</guid>
       <description></description>
     </item>
     
@@ -26,24 +62,6 @@
       <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog2/tags/parallel/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>shell</title>
-      <link>https://jreisinger.github.io/blog2/tags/shell/</link>
-      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog2/tags/shell/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sysadmin</title>
-      <link>https://jreisinger.github.io/blog2/tags/sysadmin/</link>
-      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog2/tags/sysadmin/</guid>
       <description></description>
     </item>
     

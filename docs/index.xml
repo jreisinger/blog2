@@ -6,10 +6,19 @@
     <description>Recent content on Jozef Reisinger&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/blog2/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>waf-tester: testing WAF rules</title>
+      <link>https://jreisinger.github.io/blog2/posts/waf-tester/</link>
+      <pubDate>Thu, 12 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/posts/waf-tester/</guid>
+      <description>I&#39;ve been working with WAFs for some time and to make my work easier I created couple of tools.</description>
+    </item>
     
     <item>
       <title>runp: run shell commands in parallel</title>

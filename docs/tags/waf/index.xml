@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>sec on Jozef Reisinger&#39;s Blog</title>
-    <link>https://jreisinger.github.io/blog2/categories/sec/</link>
-    <description>Recent content in sec on Jozef Reisinger&#39;s Blog</description>
+    <title>waf on Jozef Reisinger&#39;s Blog</title>
+    <link>https://jreisinger.github.io/blog2/tags/waf/</link>
+    <description>Recent content in waf on Jozef Reisinger&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 12 Mar 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://jreisinger.github.io/blog2/categories/sec/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jreisinger.github.io/blog2/tags/waf/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
