@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>waf-tester: testing WAF rules - Jozef Reisinger&#39;s Blog</title>
-  <meta property="og:title" content="waf-tester: testing WAF rules - Jozef Reisinger&#39;s Blog" />
-  <meta name="twitter:title" content="waf-tester: testing WAF rules - Jozef Reisinger&#39;s Blog" />
+  <title>waf-tester: testing Web Application Firewalls - Jozef Reisinger&#39;s Blog</title>
+  <meta property="og:title" content="waf-tester: testing Web Application Firewalls - Jozef Reisinger&#39;s Blog" />
+  <meta name="twitter:title" content="waf-tester: testing Web Application Firewalls - Jozef Reisinger&#39;s Blog" />
   <meta name="description" content="I&#39;ve been working with WAFs for some time and to make my work easier I created couple of tools.">
   <meta property="og:description" content="I&#39;ve been working with WAFs for some time and to make my work easier I created couple of tools.">
   <meta name="twitter:description" content="I&#39;ve been working with WAFs for some time and to make my work easier I created couple of tools.">
@@ -42,7 +42,7 @@
     <article class="article">
       
       
-      <h1 class="article-title">waf-tester: testing WAF rules</h1>
+      <h1 class="article-title">waf-tester: testing Web Application Firewalls</h1>
       
       <hr class="article-title-bottom">
       <ul class="article-meta">
@@ -91,9 +91,41 @@
         </li>
       </ul>
       
+<aside class="toc">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#waf-tests">WAF tests</a></li>
+    <li><a href="#waf-rules">WAF rules</a></li>
+  </ul>
+</nav>
+</aside>
       <p>I've been working with WAFs for some time and to make my work easier I created couple of tools. They are inside the <a href="https://github.com/jreisinger/waf-tester">waf-tester</a> project. Let's see how I use these tools.</p>
-<h2 id="adding-a-new-naxsi-rule">Adding a new NAXSI rule</h2>
-<p>Let's say that we want to run some tests against a <a href="https://github.com/nbs-system/naxsi">NAXSI</a> WAF. To run this WAF locally in a container I execute this:</p>
+<h2 id="waf-tests">WAF tests</h2>
+<p><code>waf-tester</code> binary executes and then evaluates tests against a specified host. So what are these tests. They are basically HTTP requests and expected responses represented in YAML format. For example:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">  - test_title: RCE
+    stages:
+      - stage:
+          input:
+            method: &#34;GET&#34;
+            uri: &#34;?exec=/bin/bash&#34;
+          output:
+            status: 403
+</code></pre></div><p>This means that <code>waf-tester</code> will make a GET request with this URL <code>&lt;scheme&gt;://&lt;host&gt;/?exec=/bin/bash</code> (<code>scheme</code> and <code>host</code> are command line flags) and it will expect status 403 in the response. If this expectation proves true the test passed (<code>OK</code>). Otherwise it failed (<code>FAIL</code>).</p>
+<p>There exist additional <code>input</code> and <code>output</code> fields. You can use different methods, insert custom headers or instead of checking the request code you can check the WAF logs:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">  - test_title: 911100-5
+    stages:
+      - stage:
+          input:
+            method: &#34;TEST&#34;
+            port: 80
+            headers:
+              User-Agent: &#34;ModSecurity CRS 3 Tests&#34;
+              Host: &#34;localhost&#34;
+          output:
+            log_contains: &#34;id \&#34;911100\&#34;&#34;
+</code></pre></div><p>The YAML format is based on <a href="https://github.com/CRS-support/ftw/blob/master/docs/YAMLFormat.md">FTW</a> but some fields are missing. Others, like <code>dest_addr</code>, are ignored. See the <a href="https://github.com/jreisinger/waf-tester/blob/master/yaml/types.go">code</a> for details.</p>
+<h2 id="waf-rules">WAF rules</h2>
+<p>WAF rules (or signatures) is what helps WAFs to distinguish between legitimate and malicious requests. Let's say that I want to run some tests against a <a href="https://github.com/nbs-system/naxsi">NAXSI</a> WAF with default rules. To run this WAF locally in a container I execute this:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ ./run-waf -s nginx/naxsi
 --&gt; Create a temporary directory
 --&gt; Copy all needed files to /tmp/tmp.yC7gNgJStX
@@ -104,7 +136,8 @@ Building testing-waf
 Creating tmpyc7gngjstx_testing-webserver_1 ... done
 Creating tmpyc7gngjstx_testing-waf_1       ... done
 --&gt; Sleeping until Ctrl-C
-</code></pre></div><p>I open another terminal and run basic tests against the WAF:</p>
+</code></pre></div><p><code>nxingx/naxsi</code> folder contains the <code>Dockerfile</code> and all needed files like <code>nginx.conf</code>, <code>naxsi.conf</code> and <code>naxsi_core.rules</code> that get copied into the container.</p>
+<p>Then I open another terminal and run basic tests against the WAF (to compile and install the <code>waf-tester</code> binary run <code>make install</code> from within the <a href="https://github.com/jreisinger/waf-tester">waf-tester repo</a>):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -scheme http
 FAIL	RCE                  GET       http://localhost/?exec=/bin/bash
 OK	    SQLi                 GET       http://localhost/?id=1&#39;%20or%20&#39;1&#39;%20=%20&#39;
@@ -112,7 +145,7 @@ OK	    LFI                  GET       http://localhost/?page=/etc/passwd
 OK	    XSS                  GET       http://localhost/?&lt;script&gt;
 FAIL	Scanner detection    GET       http://localhost/AppScan_fingerprint/MAC_ADDRESS_01234567890.html?9ABCDG1
 OK	    Session fixation     GET       http://localhost/foo.php?bar=blah%3Cscript%3Edocument.cookie=%22sessionid=1234;%20domain=.example.dom%22;%3C/script%3E
-</code></pre></div><p>We can see <code>FAIL</code> status for two tests. This means that the WAF didn't block these two requests. Let's have a more detailed view on the first failing test:</p>
+</code></pre></div><p>You can see <code>FAIL</code> status for two tests. This means that the WAF didn't block these two requests. Let's have a more detailed view on the first failing test:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -scheme http -title RCE -verbose
 FAIL	RCE                  GET       http://localhost/?exec=/bin/bash
   DESC       
@@ -129,9 +162,10 @@ FAIL	RCE                  GET       http://localhost/?exec=/bin/bash
     waf-tester-id: cb0338a4-d88e-bba1-7177-cb9f026ae7f8
   LOGS   
 </code></pre></div><p>As you can see the test expected 403 code (<code>EXP_CODES</code>) but got 200 (<code>CODE</code>). That's why it failed.</p>
-<p>Let's try to add (a rather naive) custom rule to fix the failing test into <code>nginx/naxsi/naxsi_custom.rules</code>:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">BasicRule &#34;str:/bin/bash&#34; &#34;msg:RCE&#34; &#34;mz:ARGS&#34; &#34;s:$UWA:4&#34; id:10001;
-</code></pre></div><p>Let's rebuild the WAF container: hit <code>Ctrl-C</code> in the first terminal and run <code>./run-waf -s nginx/naxsi</code> again. When we re-run the test we can see it's <code>OK</code> now:</p>
+<p>Let's try to add (a rather naïve) custom WAF rule to fix the failing test:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># nginx/naxsi/naxsi_custom.rules
+BasicRule &#34;str:/bin/bash&#34; &#34;msg:RCE&#34; &#34;mz:ARGS&#34; &#34;s:$UWA:4&#34; id:10001;
+</code></pre></div><p>Now I rebuild the WAF container: I hit <code>Ctrl-C</code> in the first terminal and run <code>./run-waf -s nginx/naxsi</code> again. When I re-run the test you can see it's <code>OK</code> now:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -scheme http -title RCE
 OK	RCE                  GET       http://localhost/?exec=/bin/bash
 </code></pre></div>
