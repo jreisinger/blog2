@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Working with WAF containers - Jozef Reisinger&#39;s Blog</title>
+  <meta property="og:title" content="Working with WAF containers - Jozef Reisinger&#39;s Blog" />
+  <meta name="twitter:title" content="Working with WAF containers - Jozef Reisinger&#39;s Blog" />
+  <meta name="description" content="I&#39;ve been working with Web Application Firewalls (WAFs) in the form of application containers for some time.">
+  <meta property="og:description" content="I&#39;ve been working with Web Application Firewalls (WAFs) in the form of application containers for some time.">
+  <meta name="twitter:description" content="I&#39;ve been working with Web Application Firewalls (WAFs) in the form of application containers for some time.">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Jozef Reisinger&#39;s Blog" />
+  <meta property="og:url" content="https://jreisinger.github.io/blog2/posts/working-with-waf-containers/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.61.0" />
+
+  <link rel="stylesheet" href="https://jreisinger.github.io/blog2/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/blog2/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/blog2/css/custom.css" media="all" />
+
+  <script src="https://jreisinger.github.io/blog2/js/script.js"></script>
+  <script src="https://jreisinger.github.io/blog2/js/custom.js"></script>
+  <script defer src="https://jreisinger.github.io/blog2/js/fontawesome.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="https://jreisinger.github.io/blog2/">Jozef Reisinger&#39;s Blog</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/blog2/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/blog2/tags/" title="Tags">Tags</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Working with WAF containers</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>March 16, 2020</time></li>
+        <li class="article-meta-categories">
+          <a href="https://jreisinger.github.io/blog2/categories/prog/">
+            <i class="fas fa-folder"></i>
+            prog
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-categories">
+          <a href="https://jreisinger.github.io/blog2/categories/sec/">
+            <i class="fas fa-folder"></i>
+            sec
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/blog2/tags/sysadmin/">
+            <i class="fas fa-tag"></i>
+            sysadmin
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/blog2/tags/go/">
+            <i class="fas fa-tag"></i>
+            go
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/blog2/tags/shell/">
+            <i class="fas fa-tag"></i>
+            shell
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/blog2/tags/docker/">
+            <i class="fas fa-tag"></i>
+            docker
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/blog2/tags/waf/">
+            <i class="fas fa-tag"></i>
+            waf
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+<aside class="toc">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#running-a-waf">Running a WAF</a></li>
+    <li><a href="#testing-a-waf">Testing a WAF</a></li>
+    <li><a href="#practical-example-adding-a-waf-rule">Practical example: adding a WAF rule</a></li>
+  </ul>
+</nav>
+</aside>
+      <p>I've been working with Web Application Firewalls (WAFs) in the form of application containers for some time. To make my work easier I created couple of tools: <a href="https://github.com/jreisinger/waf-runner">waf-runner</a> and <a href="https://github.com/jreisinger/waf-tester">waf-tester</a>. In this post I'll try to show you how they can be used.</p>
+<p>My most common use cases boil down to:</p>
+<ol>
+<li>Changing configuration of WAF components (upgrades, configuration changes).</li>
+<li>Adding or modifying WAF rules. (Strictly speaking this is a subset of 1.)</li>
+</ol>
+<p>For both use cases the workflow looks like this:</p>
+<ol>
+<li>Build and run a WAF container.</li>
+<li>Make temporary changes inside the WAF container.</li>
+<li>Test the changes (sort of unit testing).</li>
+<li>Make changes permanent by editing <code>Dockerfile</code> or WAF configuration files.</li>
+<li>Test the changes again.</li>
+<li>Commit and push the changes.</li>
+<li>Run integration tests (CI/CD tests)</li>
+</ol>
+<p><code>waf-runner</code> can help with 1. and <code>waf-tester</code> with 3. and 5. (possibly with 7.).</p>
+<h2 id="running-a-waf">Running a WAF</h2>
+<p><code>waf-runner</code> will build and run a WAF container based on supplied <code>Dockerfile</code> and related configuration files. For example:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-runner -s waf/nginx/modsecurity
+--&gt; Create directories for WAF logs in /tmp/var/log
+--&gt; Create temporary directory
+/tmp/tmp.LceQagUPU5
+--&gt; Create /tmp/tmp.LceQagUPU5/docker-compose.yaml
+--&gt; Copy all needed files from waf/nginx/modsecurity to /tmp/tmp.LceQagUPU5
+&#39;waf/nginx/modsecurity/Dockerfile&#39; -&gt; &#39;/tmp/tmp.LceQagUPU5/Dockerfile&#39;
+&#39;waf/nginx/modsecurity/geoip2.sh&#39; -&gt; &#39;/tmp/tmp.LceQagUPU5/geoip2.sh&#39;
+&#39;waf/nginx/modsecurity/nginx.conf&#39; -&gt; &#39;/tmp/tmp.LceQagUPU5/nginx.conf&#39;
+--&gt; Run docker images for WAF and web server
+Creating network &#34;tmplceqagupu5_default&#34; with the default driver
+Building testing-waf
+Creating testing-webserver ... done
+Creating testing-waf       ... done
+--&gt; Check WAF is up and proxying requests
+CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                  NAMES
+f97cf198b64e        tmplceqagupu5_testing-waf   &#34;nginx -g &#39;daemon of…&#34;   4 seconds ago       Up 3 seconds        0.0.0.0:80-&gt;80/tcp     testing-waf
+cdc49e9ae687        nginx                       &#34;nginx -g &#39;daemon of…&#34;   5 seconds ago       Up 4 seconds        0.0.0.0:8080-&gt;80/tcp   testing-webserver
+--&gt; WAF container is up and running
+--&gt; Sleeping until Ctrl-C
+</code></pre></div><p>If you want to make temporary changes to the WAF you can get into the container:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ docker exec -it testing-waf /bin/sh
+/ # vi /etc/nginx/nginx.conf
+/ # nginx -s reload
+/ # exit
+</code></pre></div><p>To make permanent changes you modify the WAF's <code>Dockerfile</code> and/or related configuration files.</p>
+<h2 id="testing-a-waf">Testing a WAF</h2>
+<p><code>waf-tester</code> will run tests against a WAF (that is running on localhost in this case):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -tests tests/basic-tests.yaml -scheme http
+OK	RCE                  GET       http://localhost/?exec=/bin/bash
+OK	SQLi                 GET       http://localhost/?id=1&#39;%20or%20&#39;1&#39;%20=%20&#39;
+OK	LFI                  GET       http://localhost/?page=/etc/passwd
+OK	XSS                  GET       http://localhost/?&lt;script&gt;
+OK	Scanner detection    GET       http://localhost/AppScan_fingerprint/MAC_ADDRESS_01234567890.html?9ABCDG1
+OK	Session fixation     GET       http://localhost/foo.php?bar=blah%3Cscript%3Edocument.cookie=%22sessionid=1234;%20domain=.example.dom%22;%3C/script%3E
+</code></pre></div><p>So what are these tests. They are basically HTTP requests and expected responses represented in YAML format. For example:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">  - test_title: RCE
+    stages:
+      - stage:
+          input:
+            method: &#34;GET&#34;
+            uri: &#34;?exec=/bin/bash&#34;
+          output:
+            status: 403
+</code></pre></div><p>This means that <code>waf-tester</code> will make a GET request with this URL <code>&lt;scheme&gt;://&lt;host&gt;/?exec=/bin/bash</code> (<code>scheme</code> and <code>host</code> are command line flags) and it will expect status 403 in the response. If this expectation proves true the test passed (<code>OK</code>). Otherwise it failed (<code>FAIL</code>).</p>
+<p>There exist additional <code>input</code> and <code>output</code> fields. You can use different methods, insert custom headers or instead of checking the request code you can check the WAF logs:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">  - test_title: 911100-5
+    stages:
+      - stage:
+          input:
+            method: &#34;TEST&#34;
+            port: 80
+            headers:
+              User-Agent: &#34;ModSecurity CRS 3 Tests&#34;
+              Host: &#34;localhost&#34;
+          output:
+            log_contains: &#34;id \&#34;911100\&#34;&#34;
+</code></pre></div><p>The YAML format is based on <a href="https://github.com/CRS-support/ftw/blob/master/docs/YAMLFormat.md">FTW</a> but some fields are missing. Others, like <code>dest_addr</code>, are ignored. See the <a href="https://github.com/jreisinger/waf-tester/blob/master/yaml/types.go">code</a> for details.</p>
+<h2 id="practical-example-adding-a-waf-rule">Practical example: adding a WAF rule</h2>
+<p>WAF rules (or signatures) is what helps WAFs to distinguish between legitimate and malicious requests. Let's say that I want to run some tests against a <a href="https://github.com/nbs-system/naxsi">NAXSI</a> WAF with default rules. To run this WAF locally in a container I execute this:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-runner -s waf/nginx/naxsi
+&lt;...snip...&gt;
+--&gt; Sleeping until Ctrl-C
+</code></pre></div><p><code>waf/nginx/naxsi</code> folder contains the <code>Dockerfile</code> and all needed files like <code>nginx.conf</code>, <code>naxsi.conf</code> and <code>naxsi_core.rules</code> that get copied into the container.</p>
+<p>Then I open another terminal and run basic tests against the WAF:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -scheme http -tests tests/basic-tests.yaml
+FAIL	RCE                  GET       http://localhost/?exec=/bin/bash
+OK	    SQLi                 GET       http://localhost/?id=1&#39;%20or%20&#39;1&#39;%20=%20&#39;
+OK	    LFI                  GET       http://localhost/?page=/etc/passwd
+OK	    XSS                  GET       http://localhost/?&lt;script&gt;
+FAIL	Scanner detection    GET       http://localhost/AppScan_fingerprint/MAC_ADDRESS_01234567890.html?9ABCDG1
+OK	    Session fixation     GET       http://localhost/foo.php?bar=blah%3Cscript%3Edocument.cookie=%22sessionid=1234;%20domain=.example.dom%22;%3C/script%3E
+</code></pre></div><p>You can see <code>FAIL</code> status for two tests. This means that the WAF didn't block these two requests. Let's have a more detailed view on the first failing test:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -scheme http -tests tests/basic-tests.yaml -title RCE -verbose
+FAIL	RCE                  GET       http://localhost/?exec=/bin/bash
+  DESC       
+  FILE       tests/basic-tests.yaml
+  STATUS     200 OK
+  CODE       200
+  EXP_CODES  [403]
+  EXP_LOGS   
+  EXP_NOLOGS 
+  EXP_ERR    false
+  ERROR      &lt;nil&gt;
+  DATA       []
+  HEADERS    
+    waf-tester-id: cb0338a4-d88e-bba1-7177-cb9f026ae7f8
+  LOGS   
+</code></pre></div><p>As you can see the test expected 403 code (<code>EXP_CODES</code>) but got 200 (<code>CODE</code>). That's why it failed.</p>
+<p>Let's try to add (a rather naïve) custom WAF rule to fix the failing test:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># nginx/naxsi/naxsi_custom.rules
+BasicRule &#34;str:/bin/bash&#34; &#34;msg:RCE&#34; &#34;mz:ARGS&#34; &#34;s:$UWA:4&#34; id:10001;
+</code></pre></div><p>Now I rebuild the WAF container: I hit <code>Ctrl-C</code> in the first terminal and run <code>waf-runner -s waf/nginx/naxsi</code> again. When I re-run the test you can see it's <code>OK</code> now:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -scheme http -tests tests/basic-tests.yaml -title RCE
+OK	RCE                  GET       http://localhost/?exec=/bin/bash
+</code></pre></div>
+    </article>
+
+    
+
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-jreisinger-github-io-blog2" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-older">
+        <a href="https://jreisinger.github.io/blog2/posts/runp/" data-toggle="tooltip" data-placement="top" title="runp: run shell commands in parallel">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="https://jreisinger.github.io/about" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-124886160-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>
