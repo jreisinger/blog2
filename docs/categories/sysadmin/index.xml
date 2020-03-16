@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sysadmin on Jozef Reisinger&#39;s Blog</title>
+    <link>https://jreisinger.github.io/blog2/categories/sysadmin/</link>
+    <description>Recent content in sysadmin on Jozef Reisinger&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 16 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jreisinger.github.io/blog2/categories/sysadmin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Working with WAF containers</title>
+      <link>https://jreisinger.github.io/blog2/posts/working-with-waf-containers/</link>
+      <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/posts/working-with-waf-containers/</guid>
+      <description>I&#39;ve been working with Web Application Firewalls (WAFs) in the form of application containers for some time.</description>
+    </item>
+    
+    <item>
+      <title>runp: run shell commands in parallel</title>
+      <link>https://jreisinger.github.io/blog2/posts/runp/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/posts/runp/</guid>
+      <description>I&#39;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel.</description>
+    </item>
+    
+  </channel>
+</rss>

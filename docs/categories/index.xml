@@ -29,5 +29,14 @@
       <description></description>
     </item>
     
+    <item>
+      <title>sysadmin</title>
+      <link>https://jreisinger.github.io/blog2/categories/sysadmin/</link>
+      <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/categories/sysadmin/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
