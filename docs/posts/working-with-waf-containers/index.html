@@ -147,7 +147,7 @@ cdc49e9ae687        nginx                       &#34;nginx -g &#39;daemon of…&
 </code></pre></div><p>To make permanent changes you modify the WAF's <code>Dockerfile</code> and/or related configuration files.</p>
 <h2 id="testing-a-waf">Testing a WAF</h2>
 <p><code>waf-tester</code> will run tests against a WAF (that is running on localhost in this case):</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -tests tests/basic-tests.yaml -scheme http
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -tests waf_tests/generic/basic-tests.yaml -scheme http
 OK	RCE                  GET       http://localhost/?exec=/bin/bash
 OK	SQLi                 GET       http://localhost/?id=1&#39;%20or%20&#39;1&#39;%20=%20&#39;
 OK	LFI                  GET       http://localhost/?page=/etc/passwd
@@ -184,7 +184,7 @@ OK	Session fixation     GET       http://localhost/foo.php?bar=blah%3Cscript%3Ed
 --&gt; Sleeping until Ctrl-C
 </code></pre></div><p><code>waf/nginx/naxsi</code> folder contains the <code>Dockerfile</code> and all needed files like <code>nginx.conf</code>, <code>naxsi.conf</code> and <code>naxsi_core.rules</code> that get copied into the container.</p>
 <p>Then I open another terminal and run basic tests against the WAF:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -scheme http -tests tests/basic-tests.yaml
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -scheme http -tests waf_tests/generic/basic-tests.yaml
 FAIL	RCE                  GET       http://localhost/?exec=/bin/bash
 OK	    SQLi                 GET       http://localhost/?id=1&#39;%20or%20&#39;1&#39;%20=%20&#39;
 OK	    LFI                  GET       http://localhost/?page=/etc/passwd
@@ -192,10 +192,10 @@ OK	    XSS                  GET       http://localhost/?&lt;script&gt;
 FAIL	Scanner detection    GET       http://localhost/AppScan_fingerprint/MAC_ADDRESS_01234567890.html?9ABCDG1
 OK	    Session fixation     GET       http://localhost/foo.php?bar=blah%3Cscript%3Edocument.cookie=%22sessionid=1234;%20domain=.example.dom%22;%3C/script%3E
 </code></pre></div><p>You can see <code>FAIL</code> status for two tests. This means that the WAF didn't block these two requests. Let's have a more detailed view on the first failing test:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -scheme http -tests tests/basic-tests.yaml -title RCE -verbose
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -scheme http -tests waf_tests/generic/basic-tests.yaml -title RCE -verbose
 FAIL	RCE                  GET       http://localhost/?exec=/bin/bash
   DESC       
-  FILE       tests/basic-tests.yaml
+  FILE       waf_tests/generic/basic-tests.yaml
   STATUS     200 OK
   CODE       200
   EXP_CODES  [403]
@@ -212,7 +212,7 @@ FAIL	RCE                  GET       http://localhost/?exec=/bin/bash
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># nginx/naxsi/naxsi_custom.rules
 BasicRule &#34;str:/bin/bash&#34; &#34;msg:RCE&#34; &#34;mz:ARGS&#34; &#34;s:$UWA:4&#34; id:10001;
 </code></pre></div><p>Now I rebuild the WAF container: I hit <code>Ctrl-C</code> in the first terminal and run <code>waf-runner -s waf/nginx/naxsi</code> again. When I re-run the test you can see it's <code>OK</code> now:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -scheme http -tests tests/basic-tests.yaml -title RCE
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ waf-tester -host localhost -scheme http -tests waf_tests/generic/basic-tests.yaml -title RCE
 OK	RCE                  GET       http://localhost/?exec=/bin/bash
 </code></pre></div>
     </article>

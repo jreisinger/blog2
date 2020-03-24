@@ -67,7 +67,7 @@ To make permanent changes you modify the WAF's `Dockerfile` and/or related confi
 `waf-tester` will run tests against a WAF (that is running on localhost in this case):
 
 ```
-$ waf-tester -host localhost -tests tests/basic-tests.yaml -scheme http
+$ waf-tester -host localhost -tests waf_tests/generic/basic-tests.yaml -scheme http
 OK	RCE                  GET       http://localhost/?exec=/bin/bash
 OK	SQLi                 GET       http://localhost/?id=1'%20or%20'1'%20=%20'
 OK	LFI                  GET       http://localhost/?page=/etc/passwd
@@ -124,7 +124,7 @@ $ waf-runner -s waf/nginx/naxsi
 Then I open another terminal and run basic tests against the WAF:
 
 ```
-$ waf-tester -host localhost -scheme http -tests tests/basic-tests.yaml
+$ waf-tester -host localhost -scheme http -tests waf_tests/generic/basic-tests.yaml
 FAIL	RCE                  GET       http://localhost/?exec=/bin/bash
 OK	    SQLi                 GET       http://localhost/?id=1'%20or%20'1'%20=%20'
 OK	    LFI                  GET       http://localhost/?page=/etc/passwd
@@ -136,10 +136,10 @@ OK	    Session fixation     GET       http://localhost/foo.php?bar=blah%3Cscript
 You can see `FAIL` status for two tests. This means that the WAF didn't block these two requests. Let's have a more detailed view on the first failing test:
 
 ```
-$ waf-tester -host localhost -scheme http -tests tests/basic-tests.yaml -title RCE -verbose
+$ waf-tester -host localhost -scheme http -tests waf_tests/generic/basic-tests.yaml -title RCE -verbose
 FAIL	RCE                  GET       http://localhost/?exec=/bin/bash
   DESC       
-  FILE       tests/basic-tests.yaml
+  FILE       waf_tests/generic/basic-tests.yaml
   STATUS     200 OK
   CODE       200
   EXP_CODES  [403]
@@ -165,6 +165,6 @@ BasicRule "str:/bin/bash" "msg:RCE" "mz:ARGS" "s:$UWA:4" id:10001;
 Now I rebuild the WAF container: I hit `Ctrl-C` in the first terminal and run `waf-runner -s waf/nginx/naxsi` again. When I re-run the test you can see it's `OK` now:
 
 ```
-$ waf-tester -host localhost -scheme http -tests tests/basic-tests.yaml -title RCE
+$ waf-tester -host localhost -scheme http -tests waf_tests/generic/basic-tests.yaml -title RCE
 OK	RCE                  GET       http://localhost/?exec=/bin/bash
 ```
