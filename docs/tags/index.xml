@@ -6,24 +6,15 @@
     <description>Recent content in Tags on Jozef Reisinger&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 16 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/blog2/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>docker</title>
-      <link>https://jreisinger.github.io/blog2/tags/docker/</link>
-      <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog2/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>go</title>
       <link>https://jreisinger.github.io/blog2/tags/go/</link>
-      <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog2/tags/go/</guid>
       <description></description>
@@ -32,9 +23,18 @@
     <item>
       <title>shell</title>
       <link>https://jreisinger.github.io/blog2/tags/shell/</link>
-      <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog2/tags/shell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://jreisinger.github.io/blog2/tags/docker/</link>
+      <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog2/tags/docker/</guid>
       <description></description>
     </item>
     
