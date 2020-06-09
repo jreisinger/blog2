@@ -13,11 +13,11 @@
     
     <item>
       <title>Find geolocation of an IP address</title>
-      <link>https://jreisinger.github.io/blog2/posts/checkip/</link>
+      <link>https://jreisinger.github.io/blog2/posts/geoip/</link>
       <pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/blog2/posts/checkip/</guid>
-      <description>I wrote a little tool called checkip that finds out geographic location of an IP address.</description>
+      <guid>https://jreisinger.github.io/blog2/posts/geoip/</guid>
+      <description>I wrote a little tool called geoip that finds out geographic location of an IP address.</description>
     </item>
     
     <item>
