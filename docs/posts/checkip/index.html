@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Find geolocation of an IP address - Jozef Reisinger&#39;s Blog</title>
-  <meta property="og:title" content="Find geolocation of an IP address - Jozef Reisinger&#39;s Blog" />
-  <meta name="twitter:title" content="Find geolocation of an IP address - Jozef Reisinger&#39;s Blog" />
-  <meta name="description" content="I wrote a little tool called checkip that finds out geographic location of an IP address.">
-  <meta property="og:description" content="I wrote a little tool called checkip that finds out geographic location of an IP address.">
-  <meta name="twitter:description" content="I wrote a little tool called checkip that finds out geographic location of an IP address.">
+  <title>Find out information about an IP address - Jozef Reisinger&#39;s Blog</title>
+  <meta property="og:title" content="Find out information about an IP address - Jozef Reisinger&#39;s Blog" />
+  <meta name="twitter:title" content="Find out information about an IP address - Jozef Reisinger&#39;s Blog" />
+  <meta name="description" content="I wrote a little tool called checkip that finds information about an IP address.">
+  <meta property="og:description" content="I wrote a little tool called checkip that finds information about an IP address.">
+  <meta name="twitter:description" content="I wrote a little tool called checkip that finds information about an IP address.">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Jozef Reisinger&#39;s Blog" />
   <meta property="og:url" content="https://jreisinger.github.io/blog2/posts/checkip/" />
@@ -42,7 +42,7 @@
     <article class="article">
       
       
-      <h1 class="article-title">Find geolocation of an IP address</h1>
+      <h1 class="article-title">Find out information about an IP address</h1>
       
       <hr class="article-title-bottom">
       <ul class="article-meta">
@@ -79,15 +79,18 @@
         </li>
       </ul>
       
-      <p>I wrote a little tool called <a href="https://github.com/jreisinger/checkip">checkip</a> that finds out geographic location of an IP address. It's using the MaxMind's free <a href="https://dev.maxmind.com/geoip/geoip2/geolite2/">GeoLite2 City database</a>.</p>
+      <p>I wrote a little tool called <a href="https://github.com/jreisinger/checkip">checkip</a> that finds information about an IP address.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&gt; checkip 1.1.1.1
-city unknown, Australia, AU
+Geo (maxmind.com): city unknown, Australia, AU
+ASN (iptoasn.com): 7497, 1.1.1.1 - 1.1.1.1, CSTNET-AS-AP Computer Network Information Center, CN
 
-&gt; checkip $(dig +short reisinge.net)
-Frankfurt am Main, Germany, DE
+&gt; checkip $(dig +short google.com)
+Geo (maxmind.com): city unknown, United States, US
+ASN (iptoasn.com): 15169, 172.217.0.0 - 172.217.31.255, GOOGLE - Google LLC, US
 
-&gt; checkip $(curl -s util.reisinge.net/addr)
-Partizanska lupca, Slovakia, SK
+&gt; checkip $(curl -s util.reisinge.net/addr) # your own IP address
+Geo (maxmind.com): Bratislava, Slovakia, SK
+ASN (iptoasn.com): 15962, 109.230.0.0 - 109.230.63.255, OSK-DNI Slovakia, SK
 </code></pre></div>
     </article>
 
