@@ -6,9 +6,9 @@
   <title>Find out information about an IP address - Jozef Reisinger&#39;s Blog</title>
   <meta property="og:title" content="Find out information about an IP address - Jozef Reisinger&#39;s Blog" />
   <meta name="twitter:title" content="Find out information about an IP address - Jozef Reisinger&#39;s Blog" />
-  <meta name="description" content="I wrote a little tool called checkip that finds information about an IP address.">
-  <meta property="og:description" content="I wrote a little tool called checkip that finds information about an IP address.">
-  <meta name="twitter:description" content="I wrote a little tool called checkip that finds information about an IP address.">
+  <meta name="description" content="I wrote a little tool called checkip that finds various information about an IP address.">
+  <meta property="og:description" content="I wrote a little tool called checkip that finds various information about an IP address.">
+  <meta name="twitter:description" content="I wrote a little tool called checkip that finds various information about an IP address.">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Jozef Reisinger&#39;s Blog" />
   <meta property="og:url" content="https://jreisinger.github.io/blog2/posts/checkip/" />
@@ -79,19 +79,8 @@
         </li>
       </ul>
       
-      <p>I wrote a little tool called <a href="https://github.com/jreisinger/checkip">checkip</a> that finds information about an IP address.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&gt; checkip 1.1.1.1
-Geo (maxmind.com): city unknown, Australia, AU
-ASN (iptoasn.com): 7497, 1.1.1.1 - 1.1.1.1, CSTNET-AS-AP Computer Network Information Center, CN
+      <p>I wrote a little tool called <a href="https://github.com/jreisinger/checkip">checkip</a> that finds various information about an IP address.</p>
 
-&gt; checkip $(dig +short google.com)
-Geo (maxmind.com): city unknown, United States, US
-ASN (iptoasn.com): 15169, 172.217.0.0 - 172.217.31.255, GOOGLE - Google LLC, US
-
-&gt; checkip $(curl -s util.reisinge.net/addr) # your own IP address
-Geo (maxmind.com): Bratislava, Slovakia, SK
-ASN (iptoasn.com): 15962, 109.230.0.0 - 109.230.63.255, OSK-DNI Slovakia, SK
-</code></pre></div>
     </article>
 
     
