@@ -6,15 +6,15 @@
   <title>runp: run shell commands in parallel - Jozef Reisinger&#39;s Blog</title>
   <meta property="og:title" content="runp: run shell commands in parallel - Jozef Reisinger&#39;s Blog" />
   <meta name="twitter:title" content="runp: run shell commands in parallel - Jozef Reisinger&#39;s Blog" />
-  <meta name="description" content="I&#39;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel.">
-  <meta property="og:description" content="I&#39;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel.">
-  <meta name="twitter:description" content="I&#39;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel.">
+  <meta name="description" content="I&rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel.">
+  <meta property="og:description" content="I&rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel.">
+  <meta name="twitter:description" content="I&rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel.">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Jozef Reisinger&#39;s Blog" />
   <meta property="og:url" content="https://jreisinger.github.io/blog2/posts/runp/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.61.0" />
+  <meta name="generator" content="Hugo 0.73.0" />
 
   <link rel="stylesheet" href="https://jreisinger.github.io/blog2/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/blog2/css/syntax.css" media="all" />
@@ -88,7 +88,7 @@
   </ul>
 </nav>
 </aside>
-      <p>I'm using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my <a href="https://github.com/jreisinger/dotfiles/blob/master/.bashrc">.bashrc</a> runs commands like these to download or clone vim plugins I use:</p>
+      <p>I&rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my <a href="https://github.com/jreisinger/dotfiles/blob/master/.bashrc">.bashrc</a> runs commands like these to download or clone vim plugins I use:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;&amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim
 # https://tpaschalis.github.io/vim-go-setup/
@@ -97,7 +97,7 @@ rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;&amp; git clone https://github.
 <h2 id="why-and-how-to-use-it">Why and how to use it</h2>
 <p>Now I can run those commands (I stored them in <code>install-my-stuff.txt</code>) in parallel:</p>
 <p><a href="https://asciinema.org/a/288718"><img src="https://asciinema.org/a/288718.svg" alt="asciicast"></a></p>
-<p>Let's see how much time did I save:</p>
+<p>Let&rsquo;s see how much time did I save:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ time bash install-my-stuff.txt
 &lt;...&gt;
 real	0m15.690s
@@ -110,7 +110,7 @@ real	0m3.678s
 user	0m3.904s
 sys	0m0.880s
 </code></pre></div><p>Hmm, around 12 seconds. Not bad I think :-).</p>
-<p>If you don't want <code>runp</code> to add any output of its own (that is sent to stderr by the way) use the <code>-q</code> flag to quiet it:</p>
+<p>If you don&rsquo;t want <code>runp</code> to add any output of its own (that is sent to stderr by the way) use the <code>-q</code> flag to quiet it:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ runp -q install-my-stuff.txt 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -118,7 +118,7 @@ sys	0m0.880s
 Cloning into &#39;/home/reisinge/.vim/pack/plugins/start/vim-go&#39;...
 Cloning into &#39;/home/reisinge/.vim/pack/plugins/start/grep.vim&#39;...
 </code></pre></div><h2 id="how-to-install-it">How to install it</h2>
-<p><code>runp</code> is easy to install it. It's a single binary that you download and make it executable:</p>
+<p><code>runp</code> is easy to install it. It&rsquo;s a single binary that you download and make it executable:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># choose your system and architecture
 export SYS=linux  # or darwin
 export ARCH=amd64 # or arm

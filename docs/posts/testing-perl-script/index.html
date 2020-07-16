@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://jreisinger.github.io/blog2/posts/testing-perl-script/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.61.0" />
+  <meta name="generator" content="Hugo 0.73.0" />
 
   <link rel="stylesheet" href="https://jreisinger.github.io/blog2/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/blog2/css/syntax.css" media="all" />
@@ -79,7 +79,7 @@ subsequently it reports missing processes (if any).</p>
 <p>To make the script reliable and easy to maintain I wanted to test it somehow.
 To do that I turned the script into a
 <a href="http://www.perlmonks.org/index.pl?node_id=396759">modulino</a> following brian d
-foy's advice in chapter 17 of Mastering Perl. The trick was to put all the code
+foy&rsquo;s advice in chapter 17 of Mastering Perl. The trick was to put all the code
 into subroutines that can be tested and using the
 <a href="http://perldoc.perl.org/functions/caller.html">caller()</a> function to decide
 whether the script is used as a script or as a module. The script looks something

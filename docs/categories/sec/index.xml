@@ -6,19 +6,10 @@
     <description>Recent content in sec on Jozef Reisinger&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 05 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/blog2/categories/sec/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Find out information about an IP address</title>
-      <link>https://jreisinger.github.io/blog2/posts/checkip/</link>
-      <pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog2/posts/checkip/</guid>
-      <description>I wrote a little tool called checkip that finds various information about an IP address.</description>
-    </item>
     
     <item>
       <title>Working with WAF containers</title>
@@ -26,7 +17,7 @@
       <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog2/posts/working-with-waf-containers/</guid>
-      <description>I&#39;ve been working with Web Application Firewalls (WAFs) in the form of application containers for some time.</description>
+      <description>I&amp;rsquo;ve been working with Web Application Firewalls (WAFs) in the form of application containers for some time.</description>
     </item>
     
   </channel>
